@@ -1,4 +1,4 @@
-package problem.array;
+package problem.array.twopointer;
 
 public class MoveZeroes {
 	public static void main(String [] args) {
