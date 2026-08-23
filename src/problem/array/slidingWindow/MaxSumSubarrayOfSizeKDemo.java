@@ -1,28 +1,31 @@
 package problem.array.slidingWindow;
 
 public class MaxSumSubarrayOfSizeKDemo {
-	public static int  maxSubarraySum(int arr[],int k){
-		int maxSum=0;
-		int leftIndex=0;
-		int rightIndex=arr.length-1;
-		
-		for(int i=0;i<=arr.length-k;) {
-			int currentSum = 0;
-			for(int j=i;j<=k;j++) {
-				currentSum=arr[i]+arr[j];
-			}
-			
-			if(currentSum<maxSum)
-			{
-				return maxSum;
-			}
-			else {
-				return currentSum;
-			}
-		}
-		
-		return maxSum;	
-	}
+	public static int maxSubarraySum(int arr[], int k) {
+
+        if (arr.length < k) {
+            return -1;
+        }
+
+        int windowSum = 0;
+
+        // Calculate sum of first k elements
+        for (int i = 0; i < k; i++) {
+            windowSum += arr[i];
+        }
+
+        int maxSum = windowSum;
+
+        // Sliding window
+        for (int i = k; i < arr.length; i++) {
+
+            windowSum = windowSum + arr[i] - arr[i - k];
+
+            maxSum = Math.max(maxSum, windowSum);
+        }
+
+        return maxSum;
+    }
 	public static void main(String [] a) {
 	int arr[] = {100, 200, 300, 400};
 	int k = 2;
